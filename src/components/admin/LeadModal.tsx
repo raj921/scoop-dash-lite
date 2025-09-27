@@ -17,11 +17,10 @@ interface Lead {
   problem_text: string;
   status: string;
   score: number | null;
-  band: string | null;
+  fit_band: string | null;
   label: string | null;
   rationale: string | null;
   industry: string | null;
-  fit_band: string | null;
   use_case_label: string | null;
   model_rationale: string | null;
   company_size: string | null;
@@ -88,10 +87,6 @@ export const LeadModal = ({ lead, isOpen, onClose, onSendOutreach }: LeadModalPr
               <div>
                 <span className="text-sm text-muted-foreground">Fit Score:</span>
                 <p className="font-medium">{lead.fit_score || "—"}</p>
-              </div>
-              <div>
-                <span className="text-sm text-muted-foreground">Band:</span>
-                <p className="font-medium">{lead.band || "—"}</p>
               </div>
               <div>
                 <span className="text-sm text-muted-foreground">Fit Band:</span>

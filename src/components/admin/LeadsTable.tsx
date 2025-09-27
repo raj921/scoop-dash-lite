@@ -14,7 +14,7 @@ interface Lead {
   name: string;
   company: string | null;
   score: number | null;
-  band: string | null;
+  fit_band: string | null;
   status: string;
 }
 
@@ -77,7 +77,7 @@ export const LeadsTable = ({ leads, onRowClick, isLoading }: LeadsTableProps) =>
                 <TableCell className="font-medium">{lead.name}</TableCell>
                 <TableCell>{lead.company || "—"}</TableCell>
                 <TableCell>{lead.score || "—"}</TableCell>
-                <TableCell>{lead.band || "—"}</TableCell>
+                <TableCell>{lead.fit_band || "—"}</TableCell>
                 <TableCell>
                   <Badge variant={getStatusVariant(lead.status)}>
                     {lead.status}

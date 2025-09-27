@@ -14,11 +14,10 @@ interface Lead {
   problem_text: string;
   status: string;
   score: number | null;
-  band: string | null;
+  fit_band: string | null;
   label: string | null;
   rationale: string | null;
   industry: string | null;
-  fit_band: string | null;
   use_case_label: string | null;
   model_rationale: string | null;
   company_size: string | null;
@@ -70,7 +69,7 @@ const AdminDashboard = () => {
     let filtered = leads;
 
     if (bandFilter) {
-      filtered = filtered.filter((lead) => lead.band === bandFilter);
+      filtered = filtered.filter((lead) => lead.fit_band === bandFilter);
     }
 
     if (labelFilter) {
@@ -95,7 +94,7 @@ const AdminDashboard = () => {
     }
   };
 
-  const uniqueBands = Array.from(new Set(leads.map(lead => lead.band).filter(band => band && band.trim() !== '')));
+  const uniqueBands = Array.from(new Set(leads.map(lead => lead.fit_band).filter(band => band && band.trim() !== '')));
   const uniqueLabels = Array.from(new Set(leads.map(lead => lead.label).filter(label => label && label.trim() !== '')));
 
   return (
