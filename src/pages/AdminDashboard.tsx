@@ -95,8 +95,8 @@ const AdminDashboard = () => {
     }
   };
 
-  const uniqueBands = Array.from(new Set(leads.map(lead => lead.band).filter(Boolean)));
-  const uniqueLabels = Array.from(new Set(leads.map(lead => lead.label).filter(Boolean)));
+  const uniqueBands = Array.from(new Set(leads.map(lead => lead.band).filter(band => band && band.trim() !== '')));
+  const uniqueLabels = Array.from(new Set(leads.map(lead => lead.label).filter(label => label && label.trim() !== '')));
 
   return (
     <div className="min-h-screen bg-background p-6">
