@@ -30,6 +30,25 @@ export const LeadFilters = ({
     setLabelFilter("");
   };
 
+  // Sanitize and deduplicate options to guarantee valid SelectItem values
+  const bandOptions = Array.from(
+    new Set(
+      (uniqueBands || [])
+        .filter((v): v is string => typeof v === "string")
+        .map((v) => v.trim())
+        .filter((v) => v.length > 0)
+    )
+  );
+
+  const labelOptions = Array.from(
+    new Set(
+      (uniqueLabels || [])
+        .filter((v): v is string => typeof v === "string")
+        .map((v) => v.trim())
+        .filter((v) => v.length > 0)
+    )
+  );
+
   return (
     <Card className="p-4 mb-6">
       <div className="flex items-center gap-4 flex-wrap">
@@ -43,9 +62,8 @@ export const LeadFilters = ({
             <SelectTrigger className="w-[150px]">
               <SelectValue placeholder="All bands" />
             </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="">All bands</SelectItem>
-              {uniqueBands.map((band) => (
+            <SelectContent className="z-50">
+              {bandOptions.map((band) => (
                 <SelectItem key={band} value={band}>
                   {band}
                 </SelectItem>
@@ -60,9 +78,8 @@ export const LeadFilters = ({
             <SelectTrigger className="w-[150px]">
               <SelectValue placeholder="All labels" />
             </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="">All labels</SelectItem>
-              {uniqueLabels.map((label) => (
+            <SelectContent className="z-50">
+              {labelOptions.map((label) => (
                 <SelectItem key={label} value={label}>
                   {label}
                 </SelectItem>
