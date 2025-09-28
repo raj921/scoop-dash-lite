@@ -84,13 +84,36 @@ const AdminDashboard = () => {
     setIsModalOpen(true);
   };
 
-  const handleSendOutreach = () => {
-    if (selectedLead) {
+  const handleSendOutreach = async () => {
+    if (!selectedLead) return;
+
+    try {
+      const response = await fetch("[PASTE_YOUR_N8N_PRODUCTION_URL_HERE]", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          lead_id: selectedLead.id,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
       toast({
-        title: "Outreach Sent",
-        description: `Outreach sent to ${selectedLead.name} at ${selectedLead.email}`,
+        title: "Success",
+        description: "Outreach sent successfully!",
       });
       setIsModalOpen(false);
+    } catch (error) {
+      console.error("Error sending outreach:", error);
+      toast({
+        title: "Error",
+        description: "Failed to send outreach. Please try again.",
+        variant: "destructive",
+      });
     }
   };
 
