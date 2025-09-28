@@ -88,7 +88,16 @@ const AdminDashboard = () => {
     if (!selectedLead) return;
 
     try {
-      const response = await fetch("[PASTE_YOUR_N8N_PRODUCTION_URL_HERE]", {
+      // Update lead status immediately in local state
+      const updatedLead = { ...selectedLead, status: "outreach_sent" };
+      setSelectedLead(updatedLead);
+      setLeads(prevLeads => 
+        prevLeads.map(lead => 
+          lead.id === selectedLead.id ? updatedLead : lead
+        )
+      );
+
+      const response = await fetch("https://raj24.app.n8n.cloud/webhook/send-outreach", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -104,7 +113,7 @@ const AdminDashboard = () => {
 
       toast({
         title: "Success",
-        description: "Outreach sent successfully!",
+        description: "Outreach Sent!",
       });
       setIsModalOpen(false);
     } catch (error) {
