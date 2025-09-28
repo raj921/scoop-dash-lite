@@ -97,7 +97,7 @@ const AdminDashboard = () => {
         )
       );
 
-      const response = await fetch("https://raj24.app.n8n.cloud/webhook/send-outreach", {
+      const response = await fetch("https://raj24.app.n8n.cloud/webhook-test/send-outreach", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
